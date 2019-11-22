@@ -1,0 +1,32 @@
+{
+  "name": "memeassistant",
+  "version": "1.0.0",
+  "description": "a slave to send some memes",
+  "main": "dist/bot.js",
+  "author": "Ahmad Abdallah",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "fetch-reddit": "^0.1.0",
+    "gh-pages": "^2.0.1",
+    "nodemon": "^1.19.1",
+    "snoowrap": "^1.17.0",
+    "winston": "^3.2.1",
+    "ws": "^7.0.0"
+  },
+  "engines": {
+    "node": "10.15.3"
+  },
+  "scripts": {
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2plus2is4/DiscordBot.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2plus2is4/DiscordBot/issues"
+  },
+  "homepage": "https://2plus2is4.github.io/DiscordBot"
+}
