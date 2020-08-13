@@ -4,10 +4,8 @@ var logger = require('winston');
 const http = require('http');
 const express = require('express');
 const app = express();
-app.get("/", (request, response) => {
-  console.log(Date.now() + " Ping Received");
-  response.sendStatus(200);
-});
+const dotenv = require('dotenv');
+dotenv.config();
 
 const snoowrap = require('snoowrap');
 
@@ -164,8 +162,11 @@ bot.on('message', async function (user, userID, channelID, message, evt) {
 });
 
 app.listen(process.env.PORT);
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
 setInterval(() => {
   http.get(`https://memeassistant.herokuapp.com/`);
 }, 280000);
-const dotenv = require('dotenv');
-dotenv.config();
+
