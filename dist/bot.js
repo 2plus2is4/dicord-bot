@@ -1,9 +1,19 @@
 var Discord = require('discord.io');
 var logger = require('winston');
-var auth = require('../auth.json');
-var redditor = require('../redditAuth.json');
 // import { getPosts } from 'fetch-reddit'
-
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+  console.log(Date.now() + " Ping Received");
+  response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`https://memeassistant.herokuapp.com/`);
+}, 280000);
+const dotenv = require('dotenv');
+dotenv.config();
 
 const snoowrap = require('snoowrap');
 
@@ -24,10 +34,10 @@ const r = new snoowrap({
 // Alternatively, just pass in a username and password for script-type apps.
 const otherRequester = new snoowrap({
   userAgent: 'UserAgent',
-  clientId: redditor.clientId,
-  clientSecret: redditor.clientSecret,
-  username: redditor.username,
-  password: redditor.password
+  clientId: process.env.clientId,
+  clientSecret: process.env.clientSecret,
+  username: process.env.username,
+  password: process.env.password
 });
 
 // otherRequester.getSubreddit('dankmemes').getHot().map(post => post.preview.images[0].source.url).then(console.log);
@@ -40,7 +50,7 @@ logger.add(new logger.transports.Console, {
 logger.level = 'debug';
 // Initialize Discord Bot
 var bot = new Discord.Client({
-  token: auth.token,
+  token: process.env.TOKEN,
   autorun: true
 });
 bot.on('ready', function (evt) {
@@ -128,7 +138,7 @@ bot.on('message', async function (user, userID, channelID, message, evt) {
             message: '',
             embed: {
               color: 6826080,
-              footer: { 
+              footer: {
                 text: meme.ups,
                 icon_url: 'https://discordemoji.com/assets/emoji/googlethumb.gif'
               },
@@ -140,7 +150,7 @@ bot.on('message', async function (user, userID, channelID, message, evt) {
               url: meme.url,
               image: {
                 url: meme.preview.images[0].source.url.replace('amp;s', 's'),
-                
+
               }
             }
           });
