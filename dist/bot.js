@@ -8,12 +8,6 @@ app.get("/", (request, response) => {
   console.log(Date.now() + " Ping Received");
   response.sendStatus(200);
 });
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`https://memeassistant.herokuapp.com/`);
-}, 280000);
-const dotenv = require('dotenv');
-dotenv.config();
 
 const snoowrap = require('snoowrap');
 
@@ -169,3 +163,9 @@ bot.on('message', async function (user, userID, channelID, message, evt) {
   }
 });
 
+app.listen(process.env.PORT);
+setInterval(() => {
+  http.get(`https://memeassistant.herokuapp.com/`);
+}, 280000);
+const dotenv = require('dotenv');
+dotenv.config();
